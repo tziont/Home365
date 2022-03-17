@@ -1,5 +1,5 @@
-<div *ngIf="loader.isLoading | async">
-    <mat-progress-bar mode="determinate"></mat-progress-bar>
+<div class="loader-container" *ngIf="loader.isLoading | async">
+    <mat-progress-bar mode="indeterminate"></mat-progress-bar>
 </div>
 
-<p>shell works!</p>
+<app-properties-table></app-properties-table>

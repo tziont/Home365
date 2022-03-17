@@ -1,15 +1,59 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy, ViewChild } from '@angular/core';
+import { Observable, Subject } from 'rxjs';
+import { takeUntil } from 'rxjs/Operators';
+import { MatPaginator } from '@angular/material/paginator';
+import { PropertiesEndpointService } from 'src/app/services/properties-end-point.service';
+import { MatTableDataSource } from '@angular/material/table';
+import { MatDialog } from '@angular/material/dialog';
+import { DialogModalComponent } from '../dialog-modal/dialog-modal.component';
+import { Property } from '../../types/property';
 
 @Component({
   selector: 'app-properties-table',
   templateUrl: './properties-table.component.html',
-  styleUrls: ['./properties-table.component.scss']
+  styleUrls: ['./properties-table.component.scss'],
 })
-export class PropertiesTableComponent implements OnInit {
+export class PropertiesTableComponent implements OnInit, OnDestroy {
+  private termination: Subject<null> = new Subject();
+  private terminate$: Observable<null> = this.termination.asObservable();
 
-  constructor() { }
+  propertiesList: MatTableDataSource<Property>;
+  displayedColumns: string[] = [
+    'created',
+    'property',
+    'property status',
+    'plan',
+    'owner',
+    'owner status',
+    'tenant',
+    'tenant status',
+  ];
+  @ViewChild(MatPaginator) paginator: MatPaginator;
+
+  constructor(
+    private properties: PropertiesEndpointService,
+    private dialog: MatDialog
+  ) {}
 
   ngOnInit(): void {
+    this.properties
+      .getProperties()
+      .pipe(takeUntil(this.terminate$))
+      .subscribe((res) => {
+        this.propertiesList = new MatTableDataSource(res);
+        this.propertiesList.paginator = this.paginator;
+      });
   }
-
+  openDialog(item: string, status: string) {
+    this.dialog.open(DialogModalComponent, {
+      data: {
+        item,
+        status,
+      },
+    });
+  }
+  ngOnDestroy(): void {
+    this.termination.next();
+    this.termination.complete();
+  }
 }
