@@ -1,0 +1,27 @@
+.hidden{
+display:none;
+}
+table{
+    width:100%;
+}
+.active,
+.occupied{
+    color:#08BE22;
+}
+.vacant{
+    color: #D52B1E;
+}
+.inactive{
+    color:#353435
+}
+
+.status{
+    text-transform: uppercase;
+}
+a{
+    color:rgb(58, 151, 204)
+}
+th.mat-header-cell,
+td.mat-cell{
+    padding:0 10px;
+}

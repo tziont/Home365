@@ -16,8 +16,11 @@ import { Property } from '../../types/property';
 export class PropertiesTableComponent implements OnInit, OnDestroy {
   private termination: Subject<null> = new Subject();
   private terminate$: Observable<null> = this.termination.asObservable();
-
+  isShow: boolean;
   propertiesList: MatTableDataSource<Property>;
+  rowPropertiesList: MatTableDataSource<Property>;
+  filterdTenantValue: string;
+  filterdPropertyValue: string;
   displayedColumns: string[] = [
     'created',
     'property',
@@ -42,7 +45,14 @@ export class PropertiesTableComponent implements OnInit, OnDestroy {
       .subscribe((res) => {
         this.propertiesList = new MatTableDataSource(res);
         this.propertiesList.paginator = this.paginator;
+        this.isShow = true;
       });
+    this.propertiesList.filterPredicate = function (property, filter) {
+      return (
+        property.tenant?.tenantStatus.toLocaleLowerCase() ==
+        filter.toLocaleLowerCase()
+      );
+    };
   }
   openDialog(item: string, status: string) {
     this.dialog.open(DialogModalComponent, {
@@ -52,6 +62,17 @@ export class PropertiesTableComponent implements OnInit, OnDestroy {
       },
     });
   }
+
+  onChange(filterValue: string) {
+    if (filterValue !== 'all') {
+      this.propertiesList.filter = filterValue.trim().toLowerCase();
+    } else {
+      this.propertiesList.filter = '';
+    }
+    this.filterdPropertyValue = filterValue;
+    this.filterdTenantValue = filterValue;
+  }
+
   ngOnDestroy(): void {
     this.termination.next();
     this.termination.complete();
