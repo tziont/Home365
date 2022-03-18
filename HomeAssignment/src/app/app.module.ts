@@ -16,12 +16,16 @@ import { InterceptorService } from './loader/interceptor.service';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatSelectModule } from '@angular/material/select'; 
 import { FormsModule } from '@angular/forms';
+import { FiltersComponent } from './components/filters/filters.component';
+import { DialogModalComponent } from './components/dialog-modal/dialog-modal.component'
 @NgModule({
   declarations: [
     AppComponent,
 
     ShellComponent,
     PropertiesTableComponent,
+    FiltersComponent,
+    DialogModalComponent
   ],
   imports: [
     BrowserModule,
@@ -35,7 +39,8 @@ import { FormsModule } from '@angular/forms';
     MatDialogModule,
     MatFormFieldModule,
     MatSelectModule,
-    FormsModule
+    FormsModule,
+    
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: InterceptorService, multi: true },

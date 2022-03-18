@@ -1,2 +1,8 @@
-<p>Item:{{data.item}}</p>
-<p>Item status:{{data.status}}</p>
+<p>
+  <span class="title">{{ data.title }}:</span> {{ data.item }}
+</p>
+<p>
+  <span class="title">{{ data.title }} status:</span>
+  <span class="status"
+  [ngClass]="(data.status === 'active' || data.status === 'occupied')? 'active' : data.status === 'vacant'? 'vacant': 'ivactive' " > {{ data.status }}</span>
+</p>

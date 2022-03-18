@@ -1,0 +1,17 @@
+.title{
+    font-weight: bold;
+}
+.active,
+.occupied {
+  color: #08be22;
+}
+.vacant {
+  color: #d52b1e;
+}
+.inactive {
+  color: #353435;
+}
+
+.status {
+  text-transform: uppercase;
+}

@@ -1,20 +1,20 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { PropertiesTableComponent } from './properties-table.component';
+import { FiltersComponent } from './filters.component';
 
-describe('PropertiesTableComponent', () => {
-  let component: PropertiesTableComponent;
-  let fixture: ComponentFixture<PropertiesTableComponent>;
+describe('FiltersComponent', () => {
+  let component: FiltersComponent;
+  let fixture: ComponentFixture<FiltersComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ PropertiesTableComponent ]
+      declarations: [ FiltersComponent ]
     })
     .compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(PropertiesTableComponent);
+    fixture = TestBed.createComponent(FiltersComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

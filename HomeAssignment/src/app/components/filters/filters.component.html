@@ -1,0 +1,23 @@
+<mat-form-field appearance="fill">
+    <mat-label>Filter property status</mat-label>
+    <mat-select
+      [(ngModel)]="propertiesFilterValue"
+      (selectionChange)="filterItem($event.value)"
+    >
+      <mat-option value="all">All</mat-option>
+      <mat-option value="inactive">Inactive</mat-option>
+      <mat-option value="vacant">Vacant</mat-option>
+      <mat-option value="occupied">Occupied</mat-option>
+    </mat-select>
+  </mat-form-field>
+  <mat-form-field appearance="fill">
+    <mat-label>Filter tenant status</mat-label>
+    <mat-select
+      [(ngModel)]="tenantFilterValue"
+      (selectionChange)="filterItem($event.value)"
+    >
+      <mat-option value="all">All</mat-option>
+      <mat-option value="occupied">Active</mat-option>
+      <mat-option value="vacant">Inactive</mat-option>
+    </mat-select>
+  </mat-form-field>

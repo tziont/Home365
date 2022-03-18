@@ -19,8 +19,8 @@ export class PropertiesTableComponent implements OnInit, OnDestroy {
   isShow: boolean;
   propertiesList: MatTableDataSource<Property>;
   rowPropertiesList: MatTableDataSource<Property>;
-  filterdTenantValue: string;
-  filterdPropertyValue: string;
+  tenantFilterValue: string;
+  propertiesFilterValue: string;
   displayedColumns: string[] = [
     'created',
     'property',
@@ -54,23 +54,24 @@ export class PropertiesTableComponent implements OnInit, OnDestroy {
       );
     };
   }
-  openDialog(item: string, status: string) {
+  openDialog(title:string ,item: string, status: string) {
     this.dialog.open(DialogModalComponent, {
       data: {
+        title,
         item,
         status,
       },
     });
   }
-
-  onChange(filterValue: string) {
+ 
+  filteritem(filterValue: string) {
     if (filterValue !== 'all') {
       this.propertiesList.filter = filterValue.trim().toLowerCase();
     } else {
       this.propertiesList.filter = '';
     }
-    this.filterdPropertyValue = filterValue;
-    this.filterdTenantValue = filterValue;
+    this.propertiesFilterValue = filterValue;
+    this.tenantFilterValue = filterValue;
   }
 
   ngOnDestroy(): void {
