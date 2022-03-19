@@ -1,7 +1,7 @@
 <div [ngClass]="{ hidden: !isShow }">
   <app-filters
     [propertiesFilterValue]="propertiesFilterValue"
-    (filterEvent)="filteritem($event)"
+    (filterEvent)="filterItem($event)"
     [tenantFilterValue]="tenantFilterValue"
   ></app-filters>
 
@@ -85,11 +85,11 @@
         class="status"
         mat-cell
         *matCellDef="let element"
-        [ngClass]="
-          element.tenant.tenantStatus === 'active' ? 'active' : 'inactive'
-        "
+        
       >
-        <span *ngIf="!!element.tenant">{{ element.tenant.tenantStatus }}</span>
+        <span [ngClass]="
+        element.tenant.tenantStatus === 'active' ? 'active' : 'inactive'
+      " *ngIf="element.tenant">{{ element.tenant.tenantStatus }}</span>
       </td>
     </ng-container>
 

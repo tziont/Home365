@@ -19,7 +19,7 @@ export class PropertiesTableComponent implements OnInit, OnDestroy {
   isShow: boolean;
   propertiesList: MatTableDataSource<Property>;
   rowPropertiesList: MatTableDataSource<Property>;
-  tenantFilterValue: string;
+  tenantFilterValue: string ;
   propertiesFilterValue: string;
   displayedColumns: string[] = [
     'created',
@@ -47,12 +47,6 @@ export class PropertiesTableComponent implements OnInit, OnDestroy {
         this.propertiesList.paginator = this.paginator;
         this.isShow = true;
       });
-    this.propertiesList.filterPredicate = function (property, filter) {
-      return (
-        property.tenant?.tenantStatus.toLocaleLowerCase() ==
-        filter.toLocaleLowerCase()
-      );
-    };
   }
   openDialog(title:string ,item: string, status: string) {
     this.dialog.open(DialogModalComponent, {
@@ -64,7 +58,7 @@ export class PropertiesTableComponent implements OnInit, OnDestroy {
     });
   }
  
-  filteritem(filterValue: string) {
+  filterItem(filterValue: string) {
     if (filterValue !== 'all') {
       this.propertiesList.filter = filterValue.trim().toLowerCase();
     } else {
