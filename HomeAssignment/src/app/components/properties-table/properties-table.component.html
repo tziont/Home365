@@ -18,7 +18,9 @@
       <td
         mat-cell
         *matCellDef="let element"
-        (click)="openDialog('Property', element.propertyId, element.occupiedStats)"
+        (click)="
+          openDialog('Property', element.propertyId, element.occupiedStats)
+        "
       >
         <a href="javascript:;">{{ element.propertyId }}</a>
       </td>
@@ -70,7 +72,11 @@
         mat-cell
         *matCellDef="let element"
         (click)="
-          openDialog('Tenant',element.tenant.firstName, element.tenant.tenantStatus)
+          openDialog(
+            'Tenant',
+            element.tenant.firstName,
+            element.tenant.tenantStatus
+          )
         "
       >
         <a href="javascript:;" *ngIf="!!element.tenant"
@@ -81,15 +87,14 @@
 
     <ng-container matColumnDef="tenant status">
       <th mat-header-cell *matHeaderCellDef>Tenant Status</th>
-      <td
-        class="status"
-        mat-cell
-        *matCellDef="let element"
-        
-      >
-        <span [ngClass]="
-        element.tenant.tenantStatus === 'active' ? 'active' : 'inactive'
-      " *ngIf="element.tenant">{{ element.tenant.tenantStatus }}</span>
+      <td class="status" mat-cell *matCellDef="let element">
+        <span
+          [ngClass]="
+            element.tenant.tenantStatus === 'active' ? 'active' : 'inactive'
+          "
+          *ngIf="element.tenant"
+          >{{ element.tenant.tenantStatus }}</span
+        >
       </td>
     </ng-container>
 

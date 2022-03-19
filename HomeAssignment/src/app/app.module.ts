@@ -12,7 +12,7 @@ import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { MatTableModule } from '@angular/material/table';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatDialogModule } from '@angular/material/dialog';
-import { InterceptorService } from './loader/interceptor.service';
+import { LoaderInterceptorService } from './loader/loader-interceptor.service';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatSelectModule } from '@angular/material/select'; 
 import { FormsModule } from '@angular/forms';
@@ -43,7 +43,7 @@ import { DialogModalComponent } from './components/dialog-modal/dialog-modal.com
     
   ],
   providers: [
-    { provide: HTTP_INTERCEPTORS, useClass: InterceptorService, multi: true },
+    { provide: HTTP_INTERCEPTORS, useClass: LoaderInterceptorService, multi: true },
   ],
   bootstrap: [AppComponent],
 })
