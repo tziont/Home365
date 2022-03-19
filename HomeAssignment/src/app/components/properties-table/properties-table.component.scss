@@ -1,8 +1,26 @@
+:host{
+  display:block;
+  max-width: 1300px;
+  margin:0 auto;
+  
+  text-align: left;
+
+}
+
 .hidden {
   display: none;
+  
 }
+.table-wrapper{
+  border-radius: 3px;
+  border:#cfd6de 1px solid;
+  background: #fff;
+  padding:10px;
+}
+
 table {
   width: 100%;
+
 }
 .active,
 .occupied {

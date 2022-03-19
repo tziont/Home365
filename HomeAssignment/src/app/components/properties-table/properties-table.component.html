@@ -4,7 +4,7 @@
     (filterEvent)="filterItem($event)"
     [tenantFilterValue]="tenantFilterValue"
   ></app-filters>
-
+<div class="table-wrapper" >
   <table mat-table [dataSource]="propertiesList">
     <ng-container matColumnDef="created">
       <th mat-header-cell *matHeaderCellDef>created</th>
@@ -102,4 +102,5 @@
     <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
   </table>
   <mat-paginator [pageSize]="8"></mat-paginator>
+</div>
 </div>
